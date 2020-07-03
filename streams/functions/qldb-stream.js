@@ -77,7 +77,7 @@ module.exports.handler = async (event, context) => {
 
     // retrieve the version and id from the metadata section of the message
     const version = ion.dumpText(ionRecord.payload.revision.metadata.version);
-    const id = ion.dumpText(ionRecord.payload.revision.metadata.id);
+    const id = ion.dumpText(ionRecord.payload.revision.metadata.id).replace(/['"]+/g, '');
     const revision = ion.dumpText(ionRecord.payload.revision);
 
     console.log(`Version ${version} and id ${id}`);
@@ -87,8 +87,11 @@ module.exports.handler = async (event, context) => {
     try {
       const revisionData = ion.dumpText(ionRecord.payload.revision.data);
       const points = ion.dumpText(ionRecord.payload.revision.data.PenaltyPoints);
-      const postcode = ion.dumpText(ionRecord.payload.revision.data.PenaltyPoints);
+      const postcode = ion.dumpText(ionRecord.payload.revision.data.Postcode);
 
+
+      console.log(ionRecord.payload.revision.data);
+      console.log(`id: ${id}, points: ${points}, postcode: ${postcode}`);
       // if the first version then we need to do a create
       if (version == 0) {
         await createLicence(id, points, postcode);
