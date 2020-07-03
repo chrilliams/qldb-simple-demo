@@ -10,7 +10,8 @@ provider:
     apiGateway: false
     lambda: false # Optional, can be true (true equals 'Active'), 'Active' or 'PassThrough'
   environment:
-    TABLE_NAME: BicycleLicence-${self:provider.stage}
+    TABLE_NAME: 
+      Ref: bicycleLicenceLedgerTable
 
 plugins:
   - serverless-iam-roles-per-function

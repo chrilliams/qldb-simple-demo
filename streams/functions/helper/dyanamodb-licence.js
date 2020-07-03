@@ -24,7 +24,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient({
   }),
 });
 
-const  TABLE_NAME = process.env.TABLE_NAME;
+const { TABLE_NAME } = process.env;
 
 
 const createLicence = async (id, points, postcode) => {
