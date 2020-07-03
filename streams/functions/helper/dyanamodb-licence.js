@@ -4,7 +4,8 @@ const https = require('https');
 const DynamoDB = require('aws-sdk/clients/dynamodb');
 
 const AWSXRay  = require('aws-xray-sdk');
-const AWS      = AWSXRay.captureAWS(require('aws-sdk'));
+//const AWS      = AWSXRay.captureAWS(require('aws-sdk'));
+const AWS      = require('aws-sdk');
 
 
 // see https://theburningmonk.com/2019/02/lambda-optimization-tip-enable-http-keep-alive/
@@ -23,7 +24,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient({
   }),
 });
 
-const { TABLE_NAME } = process.env;
+const TABLE_NAME = process.env.TABLE_NAME;
 
 
 const createLicence = async (id, points, postcode) => {
@@ -80,6 +81,8 @@ const getLicence = async (id) => {
 
 
 const updateLicence = async (id, points, postcode) => {
+  console.log(JSON.stringify(TABLE_NAME));
+
     const params = {
         TableName: TABLE_NAME,
         Key: { 'pk': id },
