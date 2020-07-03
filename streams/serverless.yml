@@ -52,7 +52,7 @@ functions:
           - dynamodb:UpdateItem
           - dynamodb:DeleteItem
         Resource: 
-          Fn::GetAtt: [bicycleLicenceLedgerTable, Arn]
+          Fn::GetAtt: [BicycleLicenceLedgerTable, Arn]
       - Effect: "Allow"
         Action:
           - "xray:PutTraceSegments"
