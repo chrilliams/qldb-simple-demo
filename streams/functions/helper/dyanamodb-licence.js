@@ -69,7 +69,7 @@ const getLicence = async (id) => {
     const licence = await dynamodb.get({
         TableName: TABLE_NAME,
         Key: { 'pk': id },
-      }).promise();
+      });
     console.log(`Return from call dynamodb.get`);
     return {
         'id': licence.Item.pk,
