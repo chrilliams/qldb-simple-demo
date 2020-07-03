@@ -3,9 +3,8 @@ const https = require('https');
 // see https://theburningmonk.com/2019/03/just-how-expensive-is-the-full-aws-sdk/
 const DynamoDB = require('aws-sdk/clients/dynamodb');
 
-// const AWSXRay  = require('aws-xray-sdk');
-// const AWS      = AWSXRay.captureAWS(require('aws-sdk'));
-const AWS      = require('aws-sdk');
+const AWSXRay  = require('aws-xray-sdk');
+const AWS      = AWSXRay.captureAWS(require('aws-sdk'));
 
 
 // see https://theburningmonk.com/2019/02/lambda-optimization-tip-enable-http-keep-alive/
