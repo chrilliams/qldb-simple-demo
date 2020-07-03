@@ -42,12 +42,11 @@ async function processRecords(records) {
           `Skipping record of type ` + ion.dumpPrettyText(ionRecord.recordType)
         );
       } else {
-        console.log("ION Record: " + ion.dumpPrettyText(ionRecord.payload));
+        // console.log("ION Record: " + ion.dumpPrettyText(ionRecord.payload));
         await processION(ionRecord);
       }
     })
   );
-  console.log("finish 2");
 }
 
 async function processION(ionRecord) {
@@ -84,7 +83,7 @@ async function processION(ionRecord) {
 }
 
 module.exports.handler = async (event, context) => {
-  console.log(`** PRINT MSG: ` + JSON.stringify(event, null, 2));
+  // console.log(`** PRINT MSG: ` + JSON.stringify(event, null, 2));
   console.log("Processing KPL Aggregated Messages using kpl-deagg(async)");
   console.log("Processing " + event.Records.length + " Kinesis Input Records");
 
@@ -95,6 +94,4 @@ module.exports.handler = async (event, context) => {
       await processRecords(records);
     })
   );
-
-  console.log("finish");
 }
